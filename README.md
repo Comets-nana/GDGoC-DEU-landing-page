@@ -1,7 +1,7 @@
 
-  # Instagram Carousel Design
+  # GDGoC DEU Landing Page
 
-  This is a code bundle for Instagram Carousel Design. The original project is available at https://www.figma.com/design/DbBLNjAbzTGc92AgwuYk7O/Instagram-Carousel-Design.
+  This is a code bundle for GDGoC DEU Landing Page.
 
   ## Running the code
 
