@@ -348,7 +348,7 @@ function HeroSection({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          GDGoC DEU 신규 멤버 모집
+          GDGoC DEU 신규 멤버 모집  |  모집 기간: 2026.03.01 ~ 2026.03.12
         </motion.p>
 
         <motion.a
