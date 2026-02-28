@@ -97,8 +97,8 @@ function Navigation() {
   }, []);
 
   const menuItems = [
-    { label: 'Team Member', href: '#team' },
     { label: 'Study', href: '#study' },
+    { label: 'Team Member', href: '#team' },
     { label: 'Event', href: '#event' },
     { label: 'Recruit', href: '#recruit' },
     { label: 'Contact', href: '#footer' }
@@ -690,7 +690,7 @@ function EventSection() {
     },
     {
       title: 'Tech Seminar Series',
-      description: '매주 진행되는 기술 세미나',
+      description: '매달 진행되는 기술 세미나',
       images: [
         'https://media.discordapp.net/attachments/1327602998842626151/1327626334318624879/IMG_6250.jpg?ex=69a392a0&is=69a24120&hm=de53d6706186e63889b896073e8eab5fb9e4775bb834464205134158651df5ed&=&format=webp&width=937&height=703',
         'https://media.discordapp.net/attachments/1290254636195778560/1290262824672563200/20240927_190410.jpg?ex=69a41865&is=69a2c6e5&hm=c7d6b5f939b913123d07590efcabea45ce064c59195a09a4354d9590f1551719&=&format=webp&width=937&height=703',
@@ -890,7 +890,7 @@ function RecruitmentSection() {
             {[
               { step: '1', title: '지원서 작성', desc: '간단한 온라인 폼 작성' },
               { step: '2', title: '서류 검토', desc: '여러분의 열정을 확인' },
-              { step: '3', title: '최종 결과', desc: '합격 통보 및 OT' }
+              { step: '3', title: '최종 결과', desc: '합격 통보 및 온보딩' }
             ].map((item, index) => (
               <motion.div
                 key={index}
