@@ -692,13 +692,13 @@ function EventSection() {
       title: 'Tech Seminar Series',
       description: '매달 진행되는 기술 세미나',
       images: [
-        'https://media.discordapp.net/attachments/1327602998842626151/1327626334318624879/IMG_6250.jpg?ex=69a392a0&is=69a24120&hm=de53d6706186e63889b896073e8eab5fb9e4775bb834464205134158651df5ed&=&format=webp&width=937&height=703',
-        'https://media.discordapp.net/attachments/1290254636195778560/1290262824672563200/20240927_190410.jpg?ex=69a41865&is=69a2c6e5&hm=c7d6b5f939b913123d07590efcabea45ce064c59195a09a4354d9590f1551719&=&format=webp&width=937&height=703',
-        'https://media.discordapp.net/attachments/1357007754560278609/1357007757051695396/IMG_5933.jpg?ex=69a3acb5&is=69a25b35&hm=065e2fe4cf71200a8820fcf4d7f42a523f1da4dc032eec809af0cad97ae61598&=&format=webp&width=937&height=703',
-        'https://media.discordapp.net/attachments/1374715718842716160/1374715720360919191/IMG_3263.jpg?ex=69a427c8&is=69a2d648&hm=5e2357ed2ac1cec9c065352cb73faf5bfd2027e0c5c4864822fb59cf87c5d62e&=&format=webp&width=1250&height=703',
-        'https://media.discordapp.net/attachments/1408700427146362890/1408700427897409659/IMG_3974.jpg?ex=69a3dd82&is=69a28c02&hm=819f363da2e0f210099541cc8d7141af94e48439b759adb0949290886cf8779f&=&format=webp&width=937&height=703',
-        'https://media.discordapp.net/attachments/1438480505942183966/1438480717406535700/20251113_174524.jpg?ex=69a41990&is=69a2c810&hm=5319297431edf4df3a5d172571294fa7b0f0b1191db6df1fc8bee3fa4bc0ee59&=&format=webp&width=1318&height=616',
-        'https://media.discordapp.net/attachments/1446120746626711563/1446144840705245244/IMG_8676.jpg?ex=69a3a316&is=69a25196&hm=347fd75fbc7e5a0810b2515142a18579b92e5e272bb54a6828772cdb6663a831&=&format=webp&width=937&height=703'
+        'https://firebasestorage.googleapis.com/v0/b/gdgoc-com-app.firebasestorage.app/o/gdgoc_landing_page_photo%2FIMG_6250.jpg?alt=media&token=5e9c279b-051a-4e99-9544-3421564fde1b',
+        'https://firebasestorage.googleapis.com/v0/b/gdgoc-com-app.firebasestorage.app/o/gdgoc_landing_page_photo%2F20240927_190410.jpg?alt=media&token=32214b87-282f-448e-848c-7b51895925c9',
+        'https://firebasestorage.googleapis.com/v0/b/gdgoc-com-app.firebasestorage.app/o/gdgoc_landing_page_photo%2FIMG_5933.jpg?alt=media&token=abb8d322-e830-41c0-ad27-cb864b99e7d8',
+        'https://firebasestorage.googleapis.com/v0/b/gdgoc-com-app.firebasestorage.app/o/gdgoc_landing_page_photo%2FIMG_3263.jpg?alt=media&token=a80e1215-5b1d-4cf2-a09e-5bb2271b8d2a',
+        'https://firebasestorage.googleapis.com/v0/b/gdgoc-com-app.firebasestorage.app/o/gdgoc_landing_page_photo%2FIMG_3974.jpg?alt=media&token=381624e1-b6bb-4771-a7bd-079325c337cc',
+        'https://firebasestorage.googleapis.com/v0/b/gdgoc-com-app.firebasestorage.app/o/gdgoc_landing_page_photo%2F20251113_174524.jpg?alt=media&token=d037da0a-7e6c-465e-a15f-1c4a8d7ede75',
+        'https://firebasestorage.googleapis.com/v0/b/gdgoc-com-app.firebasestorage.app/o/gdgoc_landing_page_photo%2FIMG_8676.jpg?alt=media&token=327a9add-d955-4c37-a729-ea8f87048094'
       ]
     },
     {
