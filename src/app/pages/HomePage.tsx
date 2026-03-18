@@ -97,6 +97,7 @@ function Navigation() {
   }, []);
 
   const menuItems = [
+    { label: 'Session', href: '#session' },
     { label: 'Study', href: '#study' },
     { label: 'Team Member', href: '#team' },
     { label: 'Event', href: '#event' },
@@ -313,7 +314,7 @@ function HeroSection({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          2026년 1학기
+          2026년 1학기 모집 마감
         </motion.div>
         
         <motion.h1 
@@ -322,7 +323,7 @@ function HeroSection({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          NEW CHAPTER
+          SEE YOU
         </motion.h1>
         <motion.h1 
           className="font-['Montserrat',sans-serif] font-black text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 md:mb-8 leading-tight"
@@ -330,7 +331,7 @@ function HeroSection({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          COMING UP NEXT
+          NEXT SEMESTER
         </motion.h1>
         
         <motion.h2 
@@ -339,7 +340,7 @@ function HeroSection({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          Who is Next Chapter?
+          다음 학기에 만나요!
         </motion.h2>
         
         <motion.p 
@@ -348,20 +349,135 @@ function HeroSection({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          GDGoC DEU 신규 멤버 모집  |  모집 기간: 2026.03.01 ~ 2026.03.12
+          2026년 2학기 모집을 기대해주세요
         </motion.p>
 
-        <motion.a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSflSzbIop33OO8dVyZdls-eojtcUGMX7HgTXGH2i1c-MJQ6Kg/viewform"
-          className="inline-block bg-[#4285F4] hover:bg-[#1F86FB] text-white font-['Montserrat',sans-serif] font-bold text-base md:text-lg lg:text-xl px-8 md:px-12 py-3 md:py-4 rounded-full shadow-2xl transition-all duration-300 w-full sm:w-auto"
+        <motion.button
+          className="bg-[#4285F4] hover:bg-[#1F86FB] text-white font-['Montserrat',sans-serif] font-bold text-base md:text-lg lg:text-xl px-8 md:px-12 py-3 md:py-4 rounded-full shadow-2xl transition-all duration-300 w-full sm:w-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => smoothScroll('#study')}
         >
-          Apply for 2026-01
-        </motion.a>
+          이번 학기 스터디 보러가기
+        </motion.button>
+      </div>
+    </section>
+  );
+}
+
+// Session Section
+function SessionSection() {
+  const sessions = [
+    {
+      title: '2026-1학기 GDGoC DEU Onboarding',
+      date: '2026년 3월 17일 오후 5:30~7:30 (GMT+9)',
+      location: '동의대학교 산학협력관 415호',
+      description: '온보딩은 단순한 오리엔테이션을 넘어, 앞으로 한 학기 동안 여러분이 활동하게 될 GDGoC DEU의 비전을 공유하고 멤버들과 처음으로 연결되는 소중한 자리입니다. ',
+      imageUrl: 'https://res.cloudinary.com/startup-grind/image/fetch/c_fill,w_500,h_500,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/https://res.cloudinary.com/startup-grind/image/upload/c_fill%2Cdpr_2.0%2Cf_auto%2Cg_center%2Cq_auto:good/v1/gcs/platform-data-goog/event_banners/GDG_Bevy_DefaultEventThumbnail_2_rErq7xD.png',
+      link: 'https://gdg.community.dev/events/details/google-gdg-on-campus-dong-eui-university-busan-south-korea-presents-2026-1haggi-gdgoc-deu-onboarding/'
+    },
+    {
+      title: '12월 첫 번째 정기세션 - 성과공유회',
+      date: '2025년 12월 4일 오후 5:00~7:30 (GMT+9)',
+      location: '동의대학교 산학협력관 415호',
+      description: '스터디 성과 공유회',
+      imageUrl: 'https://res.cloudinary.com/startup-grind/image/fetch/c_fill,w_500,h_500,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/https://res.cloudinary.com/startup-grind/image/upload/c_fill%2Cdpr_2.0%2Cf_auto%2Cg_center%2Cq_auto:good/v1/gcs/platform-data-goog/event_banners/GDG_Bevy_DefaultEventThumbnail_2_rErq7xD.png',
+      link: 'https://gdg.community.dev/events/details/google-gdg-on-campus-dong-eui-university-busan-south-korea-presents-12weol-ceos-beonjjae-jeonggisesyeon-seonggwagongyuhoe/'
+    },
+    {
+      title: '11월 첫 번째 정기세션 - DEU Dev Lightning Talks',
+      date: '2025년 11월 13일 오후 5:10~7:00 (GMT+9)',
+      location: '동의대학교 산학협력관 415호',
+      description: '개발에 관련된 내용을 10~15분씩 이야기하는 Lightning Talks 세션',
+      imageUrl: 'https://res.cloudinary.com/startup-grind/image/fetch/c_fill,w_500,h_500,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/https://res.cloudinary.com/startup-grind/image/upload/c_fill%2Cdpr_2.0%2Cf_auto%2Cg_center%2Cq_auto:good/v1/gcs/platform-data-goog/event_banners/GDG_Bevy_DefaultEventThumbnail_2_rErq7xD.png',
+      link: 'https://gdg.community.dev/events/details/google-gdg-on-campus-dong-eui-university-busan-south-korea-presents-11weol-ceos-beonjjae-jeonggisesyeon-deu-dev-lightning-talks/'
+    },
+    {
+      title: '9월 정기세션',
+      date: '2025년 9월 25일 오후 5:15~7:15 (GMT+9)',
+      location: '동의대학교 산학협력관 415호',
+      description: '간단한 게임과 음식과 함께하는 네트워킹',
+      imageUrl: 'https://res.cloudinary.com/startup-grind/image/fetch/c_fill,w_500,h_500,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/https://res.cloudinary.com/startup-grind/image/upload/c_fill%2Cdpr_2.0%2Cf_auto%2Cg_center%2Cq_auto:good/v1/gcs/platform-data-goog/event_banners/GDG_Bevy_DefaultEventThumbnail_2_rErq7xD.png',
+      link: 'https://gdg.community.dev/events/details/google-gdg-on-campus-dong-eui-university-busan-south-korea-presents-9weol-jeonggisesyeon/'
+    }
+  ];
+
+  return (
+    <section id="session" className="py-12 md:py-24 px-4 md:px-6 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <motion.div 
+          className="text-center mb-8 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-block bg-black text-white px-6 md:px-8 py-2 md:py-3 rounded-full mb-4 md:mb-6 font-['Pretendard',sans-serif] font-medium text-sm md:text-lg">
+            최근 세션
+          </div>
+          <h2 className="font-['Montserrat',sans-serif] font-black text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4">Latest Sessions</h2>
+          <p className="font-['Pretendard',sans-serif] text-base md:text-lg lg:text-xl text-gray-600 px-4">
+            최근 진행된 세션을 확인해보세요
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {sessions.map((session, index) => (
+            <motion.div
+              key={index}
+              className="bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all border border-gray-200 flex items-stretch gap-4 h-full"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ y: -5 }}
+            >
+              {/* Circular Image - Left */}
+              <div className="flex-shrink-0 w-24 h-24 md:w-28 md:h-28">
+                <img 
+                  src={session.imageUrl}
+                  alt={session.title}
+                  className="w-full h-full rounded-full object-cover border-4 border-[#4285F4] shadow-lg"
+                />
+              </div>
+              
+              {/* Content - Right */}
+              <div className="flex-1 flex flex-col text-left min-h-0">
+                <h3 className="font-['Pretendard',sans-serif] font-bold text-lg md:text-xl mb-2 line-clamp-2">
+                  {session.title}
+                </h3>
+                
+                <div className="space-y-1 mb-2">
+                  <p className="font-['Pretendard',sans-serif] text-sm text-gray-600">
+                    📅 {session.date}
+                  </p>
+                  <p className="font-['Pretendard',sans-serif] text-sm text-gray-600">
+                    📍 {session.location}
+                  </p>
+                </div>
+                
+                <p className="font-['Pretendard',sans-serif] text-sm text-gray-700 mb-4 line-clamp-3">
+                  {session.description}
+                </p>
+                
+                {/* Learn More Button - Always at bottom */}
+                <div className="mt-auto">
+                  <a 
+                    href={session.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#4285F4] hover:bg-[#1F86FB] text-white text-center px-4 py-2 rounded-full text-sm font-['Montserrat',sans-serif] font-bold transition-colors"
+                  >
+                    더보기
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -370,7 +486,7 @@ function HeroSection({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
 // Study Section with Horizontal Scroll
 function StudySection() {
     const navigate = useNavigate();
-  const [activeSemester, setActiveSemester] = useState('25-02');
+  const [activeSemester, setActiveSemester] = useState('26-01');
   
   const studies = {
     '24-02': [
@@ -394,8 +510,8 @@ function StudySection() {
       },
       {
         title: 'Algorithm Study',
-        description: 'React와 TypeScript로 배우는 현대적인 웹 개발',
-        tags: ['React', 'TypeScript', 'Next.js'],
+        description: '알고리즘 문제 풀이 및 코딩 테스트 대비',
+        tags: ['Algorithm', 'Problem Solving', 'Coding Test'],
         link: '/study/algorithm-study-24-02'
       }
     ],
@@ -462,6 +578,38 @@ function StudySection() {
         tags: ['MineCraft', 'Object-Oriented', 'Java'],
         link: '/study/minecraft-oop'
       },
+    ],
+    '26-01': [
+      {
+        title: 'Algorithm Study',
+        description: '"백준·프로그래머스" 매주 3문제 이상 문제 풀이로 풀이 과정을 공유하며 효율적인 접근 방법을 배우는 스터디',
+        tags: ['Algorithm', 'Baekjoon', 'Programmers'],
+        link: '/study/algorithm'
+      },
+      {
+        title: 'Vibe Coding Project Study',
+        description: 'AI 툴을 활용한 프로젝트 개발로 경험에 상관없이 나만의 아이디어를 실제 서비스로 구현하는 스터디',
+        tags: ['Vibe Coding', 'Project', 'Frontend', 'Backend'],
+        link: '/study/vibe-coding-project'
+      },
+      {
+        title: 'Writing Study',
+        description: '한 달에 기술관련 글 최소 1개 발행을 목표로 하는 스터디',
+        tags: ['Writing', 'Blog', 'tistory', 'velog'],
+        link: '/study/writing'
+      },
+      {
+        title: 'Contest Build-up Study',
+        description: '팀 매칭부터 실제 출전까지, 망설임 없이 바로 도전하는 실전 공모전 스터디',
+        tags: ['Contest', 'Build-up', 'Team'],
+        link: '/study/contest-build-up'
+      },
+      {
+        title: 'Game Development Study',
+        description: 'Skript를 활용한 개발로 상상하던 나만의 마인크래프트 미니게임을 직접 기획하고 완성하는 스터디',
+        tags: ['MineCraft', 'MiniGame', 'Skript'],
+        link: '/study/minecraft-skript'
+      },
     ]
   };
 
@@ -487,7 +635,7 @@ function StudySection() {
         {/* Tab Switcher - Horizontal scroll */}
         <div className="overflow-x-auto mb-8 md:mb-12 scrollbar-hide">
           <div className="flex justify-start md:justify-center gap-3 md:gap-4 min-w-max pb-2">
-            {['24-02', '25-01', '25-02'].map((semester) => (
+            {['24-02', '25-01', '25-02', '26-01'].map((semester) => (
               <motion.button
                 key={semester}
                 onClick={() => setActiveSemester(semester)}
@@ -515,7 +663,7 @@ function StudySection() {
           {studies[activeSemester as keyof typeof studies].map((study, index) => (
             <motion.div
               key={index}
-              className="bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all border border-white/20"
+              className="bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all border border-white/20 h-full flex flex-col"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
@@ -534,25 +682,27 @@ function StudySection() {
                 ))}
               </div>
               {/* Learn More 버튼 - 조건부 렌더링 */}
-                {study.link.startsWith('/') ? (
-                // 내부 링크: navigate 사용
-                    <button 
-                        onClick={() => navigate(study.link)}
-                        className="inline-block bg-black text-white px-5 md:px-6 py-2 rounded-full text-sm md:text-base font-['Montserrat',sans-serif] font-bold hover:bg-gray-800 transition-colors cursor-pointer"
-                    >
-                        Learn More
-                    </button>
-                    ) : (
-                    // 외부 링크: 기존 <a> 태그 사용
-                    <a 
-                        href={study.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-black text-white px-5 md:px-6 py-2 rounded-full text-sm md:text-base font-['Montserrat',sans-serif] font-bold hover:bg-gray-800 transition-colors"
-                    >
-                        Learn More
-                    </a>
-                )}
+              <div className="mt-auto">
+                  {study.link.startsWith('/') ? (
+                  // 내부 링크: navigate 사용
+                      <button 
+                          onClick={() => navigate(study.link)}
+                          className="inline-block bg-black text-white px-5 md:px-6 py-2 rounded-full text-sm md:text-base font-['Montserrat',sans-serif] font-bold hover:bg-gray-800 transition-colors cursor-pointer"
+                      >
+                          Learn More
+                      </button>
+                      ) : (
+                      // 외부 링크: 기존 <a> 태그 사용
+                      <a 
+                          href={study.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block bg-black text-white px-5 md:px-6 py-2 rounded-full text-sm md:text-base font-['Montserrat',sans-serif] font-bold hover:bg-gray-800 transition-colors"
+                      >
+                          Learn More
+                      </a>
+                  )}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -878,11 +1028,11 @@ function RecruitmentSection() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-block bg-black text-white px-6 md:px-8 py-2 md:py-3 rounded-full mb-4 md:mb-6 font-['Pretendard',sans-serif] font-medium text-sm md:text-lg">
-            모집 안내
+            2026년 1학기 모집 마감
           </div>
-          <h2 className="font-['Montserrat',sans-serif] font-black text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">NO INTERVIEW</h2>
+          <h2 className="font-['Montserrat',sans-serif] font-black text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">THANK YOU</h2>
           <p className="font-['Pretendard',sans-serif] text-base md:text-xl lg:text-2xl text-gray-600 mb-8 md:mb-12 px-4">
-            면접 없이, 지원서로만 여러분의 열정을 보여주세요
+            많은 관심과 지원 감사드립니다. 2026년 2학기 모집을 기대해주세요!
           </p>
 
           {/* Process Flow */}
@@ -910,12 +1060,11 @@ function RecruitmentSection() {
           </div>
 
           <motion.a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSflSzbIop33OO8dVyZdls-eojtcUGMX7HgTXGH2i1c-MJQ6Kg/viewform"
             className="inline-block bg-[#EA4335] hover:bg-[#FD2B25] text-white font-['Montserrat',sans-serif] font-bold text-lg md:text-xl lg:text-2xl px-10 md:px-16 py-4 md:py-5 rounded-full shadow-2xl transition-all duration-300 w-full sm:w-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Start Your Application
+            2026-01 학기 모집 마감
           </motion.a>
         </motion.div>
       </div>
@@ -1082,6 +1231,7 @@ export default function App() {
     <div className="min-h-screen bg-white">
       <Navigation />
       <HeroSection mouseX={mouseX} mouseY={mouseY} />
+      <SessionSection />   
       <StudySection />
       <TeamMemberSection />
       <EventSection />
