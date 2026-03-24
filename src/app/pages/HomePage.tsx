@@ -489,57 +489,43 @@ function StudySection() {
   const [activeSemester, setActiveSemester] = useState('26-01');
   
   const studies = {
-    '24-02': [
-      {
-        title: 'Project Study',
-        description: '학생들에게 제공되는 서비스 (프론트엔드 / 백엔드) 개발하기',
-        tags: ['Project', 'Frontend', 'Backend'],
-        link: 'https://www.notion.so/gdsc-deu/Project-Study-263e8617357a80bda64ef77fe02cae49?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
-      },
-      {
-        title: 'HTML-to-React Frontend Study',
-        description: 'HTML부터 React까지 배우는 웹 개발 스터디',
-        tags: ['React', 'TypeScript', 'Next.js'],
-        link: 'https://github.com/GDG-on-Campus-DEU/HTML-To-React-24-25'
-      },
-      {
-        title: 'Spring Study',
-        description: 'Spring 프레임워크를 활용한 백엔드 개발 스터디',
-        tags: ['React', 'TypeScript', 'Next.js'],
-        link: 'https://minadotcho.notion.site/Spring-Boot-11300600f91780b7b778c5545c9ac0aa'
-      },
+    '26-01': [
       {
         title: 'Algorithm Study',
-        description: '알고리즘 문제 풀이 및 코딩 테스트 대비',
-        tags: ['Algorithm', 'Problem Solving', 'Coding Test'],
-        link: '/study/algorithm-study-24-02'
-      }
-    ],
-    '25-01': [
-      {
-        title: 'Frontend Study',
-        description: 'React와 JavaScript를 활용한 웹 개발 스터디',
-        tags: ['React', 'JavaScript', 'Vite'],
-        link: '/study/frontend-study-25-01'
+        description: '"백준·프로그래머스" 매주 3문제 이상 문제 풀이로 풀이 과정을 공유하며 효율적인 접근 방법을 배우는 스터디',
+        tags: ['Algorithm', 'Baekjoon', 'Programmers'],
+        link: 'https://www.notion.so/gdsc-deu/ALGORITHM-32ce8617357a804fa860cebabb851480?source=copy_link'
       },
       {
-        title: 'Backend Study',
-        description: 'Spring 프레임워크를 활용한 백엔드 개발 스터디',
-        tags: ['Spring', 'Backend'],
-        link: 'https://github.com/GDG-on-Campus-DEU/24-25-backend-project-study'
+        title: 'Vibe Coding Project Study',
+        description: 'AI 툴을 활용한 프로젝트 개발로 경험에 상관없이 나만의 아이디어를 실제 서비스로 구현하는 스터디',
+        tags: ['Vibe Coding', 'Project', 'Frontend', 'Backend'],
+        link: 'https://www.notion.so/gdsc-deu/32ce8617357a8051a21cff8b806fc5ef?source=copy_link'
       },
       {
-        title: 'Game Study',
-        description: '유니티5 2D(전반), 언리얼(후반) 엔진을 활용한 게임 개발을 함께 배우는 스터디',
-        tags: ['Game', 'Unity5', 'Unreal Engine'],
-        link: '/study/game-study-25-01'
+        title: 'Writing Study',
+        description: '한 달에 기술관련 글 최소 1개 발행을 목표로 하는 스터디',
+        tags: ['Writing', 'Blog', 'tistory', 'velog'],
+        link: 'https://www.notion.so/gdsc-deu/271e8617357a80d580d7d2a21914bc3a?source=copy_link'
       },
       {
-        title: 'Security Study',
-        description: '정보보호로 알아보는 보안 스터디',
-        tags: ['Security'],
-        link: '/study/security-study-25-01'
-      }
+        title: 'Contest Build-up Study',
+        description: '팀 매칭부터 실제 출전까지, 망설임 없이 바로 도전하는 실전 공모전 스터디',
+        tags: ['Contest', 'Build-up', 'Team'],
+        link: 'https://www.notion.so/gdsc-deu/Build-up-32ce8617357a8027b15bc5587b58ea57?source=copy_link'
+      },
+      {
+        title: 'Game Development Study',
+        description: 'Skript를 활용한 개발로 상상하던 나만의 마인크래프트 미니게임을 직접 기획하고 완성하는 스터디',
+        tags: ['MineCraft', 'MiniGame', 'Skript'],
+        link: '/study/minecraft-skript'
+      },
+      {
+        title: 'Computer Vision Study',
+        description: '컴퓨터 비전의 심도 있는 이해와 실무 역량 확보를 지향하는 실전형 스터디',
+        tags: ['OpenCV', 'PyTorch', 'Computer Vision'],
+        link: '/study/computer-vision'
+      },
     ],
     '25-02': [
       {
@@ -579,37 +565,57 @@ function StudySection() {
         link: '/study/minecraft-oop'
       },
     ],
-    '26-01': [
+    '25-01': [
+      {
+        title: 'Frontend Study',
+        description: 'React와 JavaScript를 활용한 웹 개발 스터디',
+        tags: ['React', 'JavaScript', 'Vite'],
+        link: '/study/frontend-study-25-01'
+      },
+      {
+        title: 'Backend Study',
+        description: 'Spring 프레임워크를 활용한 백엔드 개발 스터디',
+        tags: ['Spring', 'Backend'],
+        link: 'https://github.com/GDG-on-Campus-DEU/24-25-backend-project-study'
+      },
+      {
+        title: 'Game Study',
+        description: '유니티5 2D(전반), 언리얼(후반) 엔진을 활용한 게임 개발을 함께 배우는 스터디',
+        tags: ['Game', 'Unity5', 'Unreal Engine'],
+        link: '/study/game-study-25-01'
+      },
+      {
+        title: 'Security Study',
+        description: '정보보호로 알아보는 보안 스터디',
+        tags: ['Security'],
+        link: '/study/security-study-25-01'
+      }
+    ],
+    '24-02': [
+      {
+        title: 'Project Study',
+        description: '학생들에게 제공되는 서비스 (프론트엔드 / 백엔드) 개발하기',
+        tags: ['Project', 'Frontend', 'Backend'],
+        link: 'https://www.notion.so/gdsc-deu/Project-Study-263e8617357a80bda64ef77fe02cae49?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
+      },
+      {
+        title: 'HTML-to-React Frontend Study',
+        description: 'HTML부터 React까지 배우는 웹 개발 스터디',
+        tags: ['React', 'TypeScript', 'Next.js'],
+        link: 'https://github.com/GDG-on-Campus-DEU/HTML-To-React-24-25'
+      },
+      {
+        title: 'Spring Study',
+        description: 'Spring 프레임워크를 활용한 백엔드 개발 스터디',
+        tags: ['React', 'TypeScript', 'Next.js'],
+        link: 'https://minadotcho.notion.site/Spring-Boot-11300600f91780b7b778c5545c9ac0aa'
+      },
       {
         title: 'Algorithm Study',
-        description: '"백준·프로그래머스" 매주 3문제 이상 문제 풀이로 풀이 과정을 공유하며 효율적인 접근 방법을 배우는 스터디',
-        tags: ['Algorithm', 'Baekjoon', 'Programmers'],
-        link: '/study/algorithm'
-      },
-      {
-        title: 'Vibe Coding Project Study',
-        description: 'AI 툴을 활용한 프로젝트 개발로 경험에 상관없이 나만의 아이디어를 실제 서비스로 구현하는 스터디',
-        tags: ['Vibe Coding', 'Project', 'Frontend', 'Backend'],
-        link: '/study/vibe-coding-project'
-      },
-      {
-        title: 'Writing Study',
-        description: '한 달에 기술관련 글 최소 1개 발행을 목표로 하는 스터디',
-        tags: ['Writing', 'Blog', 'tistory', 'velog'],
-        link: '/study/writing'
-      },
-      {
-        title: 'Contest Build-up Study',
-        description: '팀 매칭부터 실제 출전까지, 망설임 없이 바로 도전하는 실전 공모전 스터디',
-        tags: ['Contest', 'Build-up', 'Team'],
-        link: '/study/contest-build-up'
-      },
-      {
-        title: 'Game Development Study',
-        description: 'Skript를 활용한 개발로 상상하던 나만의 마인크래프트 미니게임을 직접 기획하고 완성하는 스터디',
-        tags: ['MineCraft', 'MiniGame', 'Skript'],
-        link: '/study/minecraft-skript'
-      },
+        description: '알고리즘 문제 풀이 및 코딩 테스트 대비',
+        tags: ['Algorithm', 'Problem Solving', 'Coding Test'],
+        link: '/study/algorithm-study-24-02'
+      }
     ]
   };
 
@@ -635,7 +641,7 @@ function StudySection() {
         {/* Tab Switcher - Horizontal scroll */}
         <div className="overflow-x-auto mb-8 md:mb-12 scrollbar-hide">
           <div className="flex justify-start md:justify-center gap-3 md:gap-4 min-w-max pb-2">
-            {['24-02', '25-01', '25-02', '26-01'].map((semester) => (
+            {['26-01', '25-02', '25-01', '24-02'].map((semester) => (
               <motion.button
                 key={semester}
                 onClick={() => setActiveSemester(semester)}
@@ -1032,7 +1038,8 @@ function RecruitmentSection() {
           </div>
           <h2 className="font-['Montserrat',sans-serif] font-black text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">THANK YOU</h2>
           <p className="font-['Pretendard',sans-serif] text-base md:text-xl lg:text-2xl text-gray-600 mb-8 md:mb-12 px-4">
-            많은 관심과 지원 감사드립니다. 2026년 2학기 모집을 기대해주세요!
+            많은 관심과 지원 감사드립니다.<br />
+            2026년 2학기 모집을 기대해주세요!
           </p>
 
           {/* Process Flow */}

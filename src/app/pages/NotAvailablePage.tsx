@@ -78,7 +78,7 @@ export default function NotAvailablePage() {
           >
             <motion.button
               onClick={() => navigate('/')}
-              className="bg-[#4285F4] hover:bg-[#1F86FB] text-white font-['Montserrat',sans-serif] font-bold text-base md:text-lg px-8 md:px-10 py-3 md:py-4 rounded-full shadow-2xl transition-all duration-300 flex items-center gap-2 w-full sm:w-auto"
+              className="bg-[#4285F4] hover:bg-[#1F86FB] text-white font-['Montserrat',sans-serif] font-bold text-base md:text-lg px-8 md:px-10 py-3 md:py-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
