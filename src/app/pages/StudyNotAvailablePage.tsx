@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
-import { AlertCircle, Home } from 'lucide-react';
+import { BookX, Home } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import headerLogo from '../../assets/header_logo.png';
 
-export default function NotAvailablePage() {
+export default function StudyNotAvailablePage() {
   const navigate = useNavigate();
 
   return (
@@ -25,12 +25,12 @@ export default function NotAvailablePage() {
           transition={{ duration: 0.6 }}
         >
           <motion.div
-            className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#4285F4] to-[#1F86FB] mb-6 md:mb-8 shadow-2xl"
+            className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#EA4335] to-[#C5392D] mb-6 md:mb-8 shadow-2xl"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
           >
-            <AlertCircle size={48} className="text-white" />
+            <BookX size={48} className="text-white" />
           </motion.div>
 
           <motion.h1
@@ -39,7 +39,7 @@ export default function NotAvailablePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Page Not Available
+            No Page Provided
           </motion.h1>
 
           <motion.p
@@ -48,7 +48,7 @@ export default function NotAvailablePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            잘못된 경로의 페이지입니다
+            해당 스터디는 별도의 페이지를 운영하지 않습니다
           </motion.p>
 
           <motion.p
@@ -57,8 +57,8 @@ export default function NotAvailablePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            요청하신 페이지는 현재 제공되지 않습니다.<br />
-            메인 페이지로 돌아가서 다른 콘텐츠를 확인해보세요.
+            현재 활동 중인 스터디이지만, 별도의 페이지를 제공하지 않고 있습니다.<br />
+            스터디 관련 문의는 GDGoC DEU 운영진에게 연락해주세요.
           </motion.p>
 
           <motion.div
@@ -69,7 +69,7 @@ export default function NotAvailablePage() {
           >
             <motion.button
               onClick={() => navigate('/')}
-              className="bg-[#4285F4] hover:bg-[#1F86FB] text-white font-['Montserrat',sans-serif] font-bold text-base md:text-lg px-8 md:px-10 py-3 md:py-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
+              className="bg-[#EA4335] hover:bg-[#C5392D] text-white font-['Montserrat',sans-serif] font-bold text-base md:text-lg px-8 md:px-10 py-3 md:py-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -87,7 +87,7 @@ export default function NotAvailablePage() {
             </motion.button>
           </motion.div>
 
-          <div className="absolute top-1/4 left-0 w-32 h-32 rounded-full bg-gradient-to-br from-[#EA4335]/20 to-[#FD2B25]/10 blur-3xl -z-10" />
+          <div className="absolute top-1/4 left-0 w-32 h-32 rounded-full bg-gradient-to-br from-[#4285F4]/20 to-[#1F86FB]/10 blur-3xl -z-10" />
           <div className="absolute bottom-1/4 right-0 w-40 h-40 rounded-full bg-gradient-to-br from-[#FBBC05]/20 to-[#FFD700]/10 blur-3xl -z-10" />
         </motion.div>
       </main>

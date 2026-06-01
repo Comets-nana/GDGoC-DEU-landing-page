@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'motion/react';
-import { Menu, X, Github, Instagram, Linkedin, Link as LinkIcon, ChevronLeft, ChevronRight, ChevronUp } from 'lucide-react';
+import { Menu, X, Github, Instagram, Linkedin, Link as LinkIcon, ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import headerLogo from '../../assets/header_logo.png';
 import footerLogo from '../../assets/footer_logo.png';
@@ -85,6 +85,7 @@ function GlassObject({
 
 // Navigation Bar
 function Navigation() {
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -102,13 +103,17 @@ function Navigation() {
     { label: 'Team Member', href: '#team' },
     { label: 'Event', href: '#event' },
     { label: 'Recruit', href: '#recruit' },
-    { label: 'Contact', href: '#footer' }
+    { label: 'Contact', href: '/contact' }
   ];
 
   const handleMenuClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    setTimeout(() => smoothScroll(href), 100);
+    if (href.startsWith('/')) {
+      navigate(href);
+    } else {
+      setTimeout(() => smoothScroll(href), 100);
+    }
   };
 
   return (
@@ -122,11 +127,10 @@ function Navigation() {
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-          <img 
-            src={headerLogo} 
-            alt="GDGoC DEU" 
-            className="h-8 md:h-10 w-auto"
-          />
+          {headerLogo
+            ? <img src={headerLogo} alt="GDGoC DEU" className="h-8 md:h-10 w-auto" />
+            : <span className="font-['Montserrat',sans-serif] font-black text-lg md:text-xl text-gray-900">GDGoC <span className="text-[#4285F4]">DEU</span></span>
+          }
           
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-6 lg:gap-8 font-['Montserrat',sans-serif] font-bold text-sm lg:text-base">
@@ -483,48 +487,82 @@ function SessionSection() {
   );
 }
 
+// Study status logic (mirrors StudyManagePage)
+type StudyStatusType = '모집 예정' | '모집중' | '모집 완료' | '진행중' | '종료';
+const STUDY_STATUS_STYLES: Record<StudyStatusType, string> = {
+  '모집 예정': 'bg-blue-100 text-blue-600',
+  '모집중':    'bg-[#34A853]/15 text-[#34A853]',
+  '모집 완료': 'bg-gray-100 text-gray-500',
+  '진행중':    'bg-[#4285F4]/15 text-[#4285F4]',
+  '종료':      'bg-gray-100 text-gray-400',
+};
+function computeStudyStatuses(recruitStart: string, recruitEnd: string, activityStart: string, activityEnd: string | null): StudyStatusType[] {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const rS = new Date(recruitStart), rE = new Date(recruitEnd);
+  const aS = new Date(activityStart), aE = activityEnd ? new Date(activityEnd) : null;
+  const s: StudyStatusType[] = [];
+  if (today < rS) s.push('모집 예정');
+  if (today >= rS && today <= rE) s.push('모집중');
+  if (today > rE && today < aS) s.push('모집 완료');
+  if (today >= aS && (aE === null || today <= aE)) s.push('진행중');
+  if (aE !== null && today > aE) s.push('종료');
+  return s.length > 0 ? s : ['모집 예정'];
+}
+
 // Study Section with Horizontal Scroll
 function StudySection() {
     const navigate = useNavigate();
   const [activeSemester, setActiveSemester] = useState('26-01');
-  
+
   const studies = {
     '26-01': [
       {
         title: 'Algorithm Study',
         description: '"백준·프로그래머스" 매주 3문제 이상 문제 풀이로 풀이 과정을 공유하며 효율적인 접근 방법을 배우는 스터디',
         tags: ['Algorithm', 'Baekjoon', 'Programmers'],
-        link: 'https://www.notion.so/gdsc-deu/ALGORITHM-32ce8617357a804fa860cebabb851480?source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/ALGORITHM-32ce8617357a804fa860cebabb851480?source=copy_link',
+        recruitStart: '2026-01-15', recruitEnd: '2026-02-20',
+        activityStart: '2026-03-01', activityEnd: '2026-06-30',
       },
       {
         title: 'Vibe Coding Project Study',
         description: 'AI 툴을 활용한 프로젝트 개발로 경험에 상관없이 나만의 아이디어를 실제 서비스로 구현하는 스터디',
         tags: ['Vibe Coding', 'Project', 'Frontend', 'Backend'],
-        link: 'https://www.notion.so/gdsc-deu/32ce8617357a8051a21cff8b806fc5ef?source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/32ce8617357a8051a21cff8b806fc5ef?source=copy_link',
+        recruitStart: '2026-01-15', recruitEnd: '2026-02-20',
+        activityStart: '2026-03-01', activityEnd: '2026-06-30',
       },
       {
         title: 'Writing Study',
         description: '한 달에 기술관련 글 최소 1개 발행을 목표로 하는 스터디',
         tags: ['Writing', 'Blog', 'tistory', 'velog'],
-        link: 'https://www.notion.so/gdsc-deu/271e8617357a80d580d7d2a21914bc3a?source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/271e8617357a80d580d7d2a21914bc3a?source=copy_link',
+        recruitStart: '2026-01-15', recruitEnd: '2026-02-20',
+        activityStart: '2026-03-01', activityEnd: null,
       },
       {
         title: 'Contest Build-up Study',
         description: '팀 매칭부터 실제 출전까지, 망설임 없이 바로 도전하는 실전 공모전 스터디',
         tags: ['Contest', 'Build-up', 'Team'],
-        link: 'https://www.notion.so/gdsc-deu/Build-up-32ce8617357a8027b15bc5587b58ea57?source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/Build-up-32ce8617357a8027b15bc5587b58ea57?source=copy_link',
+        recruitStart: '2026-01-15', recruitEnd: '2026-02-20',
+        activityStart: '2026-03-01', activityEnd: '2026-06-30',
       },
       {
         title: 'Game Development Study',
         description: 'Skript를 활용한 개발로 상상하던 나만의 마인크래프트 미니게임을 직접 기획하고 완성하는 스터디',
         tags: ['MineCraft', 'MiniGame', 'Skript'],
-        link: '/study/minecraft-skript'
+        link: '/study/minecraft-skript',
+        recruitStart: '2026-01-15', recruitEnd: '2026-02-20',
+        activityStart: '2026-03-01', activityEnd: '2026-06-30',
       },
       {
         title: 'Computer Vision Study',
         description: '컴퓨터 비전의 심도 있는 이해와 실무 역량 확보를 지향하는 실전형 스터디',
         tags: ['OpenCV', 'PyTorch', 'Computer Vision'],
-        link: '/study/computer-vision'
+        link: '/study/computer-vision',
+        recruitStart: '2026-01-15', recruitEnd: '2026-02-20',
+        activityStart: '2026-03-01', activityEnd: '2026-06-30',
       },
     ],
     '25-02': [
@@ -532,37 +570,49 @@ function StudySection() {
         title: 'Algorithm Study',
         description: '"백준 / 프로그래머스 알고리즘 문제 풀이"를 함께 공부하며, 서로의 풀이 과정을 공유하고 효율적인 접근 방법을 배우는 스터디',
         tags: ['Algorithm', 'Baekjoon', 'Programmers'],
-        link: 'https://www.notion.so/gdsc-deu/Algorithm-278e8617357a80dc9e2ec94ea86d9b77?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/Algorithm-278e8617357a80dc9e2ec94ea86d9b77?v=25ae8617357a815880ad000c64c0b95b&source=copy_link',
+        recruitStart: '2025-08-20', recruitEnd: '2025-09-05',
+        activityStart: '2025-09-10', activityEnd: '2025-12-20',
       },
       {
         title: 'Project Study',
         description: '서비스 기획, 구현, 공개를 목표로 하는 프로젝트 스터디',
         tags: ['Project', 'Frontend', 'Backend'],
-        link: 'https://www.notion.so/gdsc-deu/25-26-Q1-271e8617357a8080ad15eee990f8aac9?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/25-26-Q1-271e8617357a8080ad15eee990f8aac9?v=25ae8617357a815880ad000c64c0b95b&source=copy_link',
+        recruitStart: '2025-08-20', recruitEnd: '2025-09-05',
+        activityStart: '2025-09-10', activityEnd: '2025-12-20',
       },
       {
         title: 'Cross Platform Study',
         description: '나만의 크로스 플랫폼 앱 개발',
         tags: ['Cross Platform', 'Android', 'iOS', 'Swift'],
-        link: 'https://www.notion.so/gdsc-deu/271e8617357a80d7b255f251fe703d3f?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/271e8617357a80d7b255f251fe703d3f?v=25ae8617357a815880ad000c64c0b95b&source=copy_link',
+        recruitStart: '2025-08-20', recruitEnd: '2025-09-05',
+        activityStart: '2025-09-10', activityEnd: '2025-12-20',
       },
       {
         title: 'Writing Study',
         description: '한 달에 기술관련 글 최소 1개 발행을 목표로 하는 스터디',
         tags: ['Writing', 'Blog', 'tistory', 'velog'],
-        link: 'https://www.notion.so/gdsc-deu/271e8617357a80d580d7d2a21914bc3a?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/271e8617357a80d580d7d2a21914bc3a?v=25ae8617357a815880ad000c64c0b95b&source=copy_link',
+        recruitStart: '2025-08-20', recruitEnd: '2025-09-05',
+        activityStart: '2025-09-10', activityEnd: '2025-12-20',
       },
       {
         title: 'Java & Spring Backend Study',
         description: 'Spring Intermediate 스터디는 기존 스프링 부트에 관한 지식에 더해 테스트 및 배포 과정까지 학습하며 보다 깊이 있는 탐구를 진행하는 스터디',
         tags: ['Java', 'Spring', 'Backend'],
-        link: 'https://www.notion.so/gdsc-deu/Java-Spring-272e8617357a80459eede4df7d85da10?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/Java-Spring-272e8617357a80459eede4df7d85da10?v=25ae8617357a815880ad000c64c0b95b&source=copy_link',
+        recruitStart: '2025-08-20', recruitEnd: '2025-09-05',
+        activityStart: '2025-09-10', activityEnd: '2025-12-20',
       },
       {
         title: 'MineCraft Object-Oriented Programming Study',
         description: '마인크래프트 모딩 툴 (Bukkit API)를 통해 개발하며 자바생태계 / 자바에 대해 더 깊이 알아보기',
         tags: ['MineCraft', 'Object-Oriented', 'Java'],
-        link: '/study/minecraft-oop'
+        link: '/study/minecraft-oop',
+        recruitStart: '2025-08-20', recruitEnd: '2025-09-05',
+        activityStart: '2025-09-10', activityEnd: '2025-12-20',
       },
     ],
     '25-01': [
@@ -570,25 +620,33 @@ function StudySection() {
         title: 'Frontend Study',
         description: 'React와 JavaScript를 활용한 웹 개발 스터디',
         tags: ['React', 'JavaScript', 'Vite'],
-        link: '/study/frontend-study-25-01'
+        link: '/study/frontend-study-25-01',
+        recruitStart: '2025-01-20', recruitEnd: '2025-02-28',
+        activityStart: '2025-03-03', activityEnd: '2025-06-20',
       },
       {
         title: 'Backend Study',
         description: 'Spring 프레임워크를 활용한 백엔드 개발 스터디',
         tags: ['Spring', 'Backend'],
-        link: 'https://github.com/GDG-on-Campus-DEU/24-25-backend-project-study'
+        link: 'https://github.com/GDG-on-Campus-DEU/24-25-backend-project-study',
+        recruitStart: '2025-01-20', recruitEnd: '2025-02-28',
+        activityStart: '2025-03-03', activityEnd: '2025-06-20',
       },
       {
         title: 'Game Study',
         description: '유니티5 2D(전반), 언리얼(후반) 엔진을 활용한 게임 개발을 함께 배우는 스터디',
         tags: ['Game', 'Unity5', 'Unreal Engine'],
-        link: '/study/game-study-25-01'
+        link: '/study/game-study-25-01',
+        recruitStart: '2025-01-20', recruitEnd: '2025-02-28',
+        activityStart: '2025-03-03', activityEnd: '2025-06-20',
       },
       {
         title: 'Security Study',
         description: '정보보호로 알아보는 보안 스터디',
         tags: ['Security'],
-        link: '/study/security-study-25-01'
+        link: '/study/security-study-25-01',
+        recruitStart: '2025-01-20', recruitEnd: '2025-02-28',
+        activityStart: '2025-03-03', activityEnd: '2025-06-20',
       }
     ],
     '24-02': [
@@ -596,25 +654,33 @@ function StudySection() {
         title: 'Project Study',
         description: '학생들에게 제공되는 서비스 (프론트엔드 / 백엔드) 개발하기',
         tags: ['Project', 'Frontend', 'Backend'],
-        link: 'https://www.notion.so/gdsc-deu/Project-Study-263e8617357a80bda64ef77fe02cae49?v=25ae8617357a815880ad000c64c0b95b&source=copy_link'
+        link: 'https://www.notion.so/gdsc-deu/Project-Study-263e8617357a80bda64ef77fe02cae49?v=25ae8617357a815880ad000c64c0b95b&source=copy_link',
+        recruitStart: '2024-08-20', recruitEnd: '2024-09-05',
+        activityStart: '2024-09-10', activityEnd: '2024-12-20',
       },
       {
         title: 'HTML-to-React Frontend Study',
         description: 'HTML부터 React까지 배우는 웹 개발 스터디',
         tags: ['React', 'TypeScript', 'Next.js'],
-        link: 'https://github.com/GDG-on-Campus-DEU/HTML-To-React-24-25'
+        link: 'https://github.com/GDG-on-Campus-DEU/HTML-To-React-24-25',
+        recruitStart: '2024-08-20', recruitEnd: '2024-09-05',
+        activityStart: '2024-09-10', activityEnd: '2024-12-20',
       },
       {
         title: 'Spring Study',
         description: 'Spring 프레임워크를 활용한 백엔드 개발 스터디',
         tags: ['React', 'TypeScript', 'Next.js'],
-        link: 'https://minadotcho.notion.site/Spring-Boot-11300600f91780b7b778c5545c9ac0aa'
+        link: 'https://minadotcho.notion.site/Spring-Boot-11300600f91780b7b778c5545c9ac0aa',
+        recruitStart: '2024-08-20', recruitEnd: '2024-09-05',
+        activityStart: '2024-09-10', activityEnd: '2024-12-20',
       },
       {
         title: 'Algorithm Study',
         description: '알고리즘 문제 풀이 및 코딩 테스트 대비',
         tags: ['Algorithm', 'Problem Solving', 'Coding Test'],
-        link: '/study/algorithm-study-24-02'
+        link: '/study/algorithm-study-24-02',
+        recruitStart: '2024-08-20', recruitEnd: '2024-09-05',
+        activityStart: '2024-09-10', activityEnd: '2024-12-20',
       }
     ]
   };
@@ -666,7 +732,9 @@ function StudySection() {
           animate={{ opacity: 1 }}
           key={activeSemester}
         >
-          {studies[activeSemester as keyof typeof studies].map((study, index) => (
+          {studies[activeSemester as keyof typeof studies].map((study, index) => {
+            const statuses = computeStudyStatuses(study.recruitStart, study.recruitEnd, study.activityStart, study.activityEnd);
+            return (
             <motion.div
               key={index}
               className="bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all border border-white/20 h-full flex flex-col"
@@ -675,31 +743,33 @@ function StudySection() {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -5 }}
             >
+              <div className="flex flex-wrap gap-1.5 mb-2 md:mb-3">
+                {statuses.map(st => (
+                  <span key={st} className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold font-['Pretendard',sans-serif] ${STUDY_STATUS_STYLES[st]}`}>{st}</span>
+                ))}
+              </div>
               <h3 className="font-['Montserrat',sans-serif] font-bold text-xl md:text-2xl mb-2 md:mb-3">{study.title}</h3>
               <p className="font-['Pretendard',sans-serif] text-sm md:text-base text-gray-600 mb-3 md:mb-4">{study.description}</p>
               <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                 {study.tags.map((tag, i) => (
-                  <span 
-                    key={i} 
+                  <span
+                    key={i}
                     className="px-2.5 md:px-3 py-1 bg-gray-100 rounded-full text-xs md:text-sm font-['Pretendard',sans-serif]"
                   >
                     #{tag}
                   </span>
                 ))}
               </div>
-              {/* Learn More 버튼 - 조건부 렌더링 */}
               <div className="mt-auto">
                   {study.link.startsWith('/') ? (
-                  // 내부 링크: navigate 사용
-                      <button 
+                      <button
                           onClick={() => navigate(study.link)}
                           className="inline-block bg-black text-white px-5 md:px-6 py-2 rounded-full text-sm md:text-base font-['Montserrat',sans-serif] font-bold hover:bg-gray-800 transition-colors cursor-pointer"
                       >
                           Learn More
                       </button>
                       ) : (
-                      // 외부 링크: 기존 <a> 태그 사용
-                      <a 
+                      <a
                           href={study.link}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -710,7 +780,8 @@ function StudySection() {
                   )}
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
     </section>
@@ -1122,6 +1193,9 @@ function BackToTop() {
 
 // Footer with Copyright
 function Footer() {
+  const navigate = useNavigate();
+  const [showAdminLink, setShowAdminLink] = useState(false);
+
   const socialLinks = [
     { icon: Github, label: 'GitHub', href: 'https://github.com/GDG-on-Campus-DEU' },
     { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/gdgoc.deu/' },
@@ -1136,12 +1210,37 @@ function Footer() {
         <div className="hidden md:block">
           {/* Top Row - Space Between */}
           <div className="flex items-center justify-between mb-6">
-            {/* Left: GDGoC DEU Logo */}
-            <img 
-              src={footerLogo} 
-              alt="GDGoC DEU" 
-              className="h-10 w-auto"
-            />
+            {/* Left: GDGoC DEU Logo + Admin Toggle */}
+            <div className="relative flex items-center gap-2">
+              {footerLogo
+                ? <img src={footerLogo} alt="GDGoC DEU" className="h-10 w-auto" />
+                : <span className="font-['Montserrat',sans-serif] font-black text-xl text-white">GDGoC <span className="text-[#4285F4]">DEU</span></span>
+              }
+              <button
+                onClick={() => setShowAdminLink(prev => !prev)}
+                className="text-gray-600 hover:text-gray-400 transition-colors"
+                aria-label="관리자 메뉴"
+              >
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-200 ${showAdminLink ? 'rotate-180' : ''}`}
+                />
+              </button>
+              <AnimatePresence>
+                {showAdminLink && (
+                  <motion.button
+                    onClick={() => navigate('/team/login')}
+                    className="absolute bottom-full mb-2 left-0 bg-white/10 backdrop-blur-sm border border-gray-600 shadow-lg rounded-xl px-4 py-2.5 font-['Pretendard',sans-serif] text-sm font-semibold text-gray-300 hover:bg-white/20 hover:text-white transition-all whitespace-nowrap"
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 4 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    Team Member Dashboard
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </div>
             
             {/* Right: Contact Us + Icons */}
             <div className="flex items-center gap-6">
@@ -1178,11 +1277,36 @@ function Footer() {
         <div className="md:hidden">
           {/* Logo - Fluid Scaling */}
           <div className="flex justify-center mb-8">
-            <img 
-              src={footerLogo} 
-              alt="GDGoC DEU" 
-              className="h-8 w-auto max-w-[80%]"
-            />
+            <div className="relative flex items-center gap-2">
+              {footerLogo
+                ? <img src={footerLogo} alt="GDGoC DEU" className="h-8 w-auto max-w-[80%]" />
+                : <span className="font-['Montserrat',sans-serif] font-black text-lg text-white">GDGoC <span className="text-[#4285F4]">DEU</span></span>
+              }
+              <button
+                onClick={() => setShowAdminLink(prev => !prev)}
+                className="text-gray-600 hover:text-gray-400 transition-colors"
+                aria-label="관리자 메뉴"
+              >
+                <ChevronDown
+                  size={15}
+                  className={`transition-transform duration-200 ${showAdminLink ? 'rotate-180' : ''}`}
+                />
+              </button>
+              <AnimatePresence>
+                {showAdminLink && (
+                  <motion.button
+                    onClick={() => navigate('/team/login')}
+                    className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-sm border border-gray-600 shadow-lg rounded-xl px-4 py-2.5 font-['Pretendard',sans-serif] text-sm font-semibold text-gray-300 hover:bg-white/20 hover:text-white transition-all whitespace-nowrap"
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 4 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    Team Member Dashboard
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* University Name - Fluid Typography */}
