@@ -1,0 +1,15 @@
+{
+    "redirects": [
+      {
+        "source": "/:path*",
+        "has": [
+          {
+            "type": "host",
+            "value": "gdgoc-deu.vercel.app"
+          }
+        ],
+        "destination": "https://gdgoc-deu.org/:path*",
+        "permanent": true
+      }
+    ]
+  }
